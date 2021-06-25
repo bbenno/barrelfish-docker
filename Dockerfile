@@ -12,40 +12,47 @@ MAINTAINER Benno Bielmeier "benno.bielmeier@st.othr.de"
 
 ## Install dependencies
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update \
- && apt-get install -y -q \
-  sudo \
-  git \
+RUN apt update
+RUN apt upgrade -y -q
+
 ## GCC 7.4.0 for x86_64, ARMv7 and ARMv8 \
+RUN apt install -y -q \
   build-essential \
-  g++ \
-  gcc-arm-linux-gnueabi \
-  g++-arm-linux-gnueabi \
+  git \
+  sudo \
   gcc-aarch64-linux-gnu \
   g++-aarch64-linux-gnu \
-  binutils \
-  make \
-## GHC v8.0.2 and Parsec 3.1 \
+  gcc-arm-linux-gnueabi \
+  g++-arm-linux-gnueabi
+
+## GHC v8.0.2 and Parsec 3.1
+RUN apt install -y -q \
   cabal-install \
-  libghc-src-exts-dev \
+  libghc-ghc-mtl-dev \
   libghc-ghc-paths-dev \
   libghc-parsec3-dev \
-  libghc-random-dev \
-  libghc-ghc-mtl-dev \
+  libghc-src-exts-dev \
   libghc-async-dev \
+  libghc-random-dev \
   libghc-aeson-pretty-dev \
   libghc-aeson-dev \
-  libghc-missingh-dev \
+  libghc-ghc-paths-dev \
+  libghc-missingh-dev
+
 ## FreeBSD's libelf \
-  libelf-freebsd-dev \
-  freebsd-glue \
+# RUN apt install -y -q \
+#  libelf-freebsd-dev \
+#  freebsd-glue \
+
 ## Optional: LibUSB 1.0 (for the usbboot tool) \
 #  libusb-1.0-0-dev \
 ## Optional: QEMU with e1000e EFI ROM \
 #  qemu-system-x86 \
 #  qemu-efi \
 #  qemu-ipxe \
+
 ## Optional: PdfLatex (for documentation / technical notes) \
+RUN apt install -y -q \
   graphviz \
   texlive-science \
   texlive-latex-extra \
@@ -64,12 +71,13 @@ USER builder
 ENV HOME /home/builder
 ENV LANG en_US.UTF-8
 
-## Prepare build
-RUN cabal update \
- && cabal install bytestring-trie pretty-simple
 RUN git clone -q git://git.barrelfish.org/git/barrelfish /home/builder/barrelfish
 WORKDIR /home/builder/barrelfish
 RUN mkdir build
+
+## Prepare build
+RUN cabal update
+RUN cabal install bytestring-trie pretty-simple async
 
 ## Set default Architecture to x86_64
 ARG ARCH=x86_64
