@@ -49,9 +49,7 @@ RUN apt-get update \
   graphviz \
   texlive-science \
   texlive-latex-extra \
-  lhs2tex \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
+  lhs2tex
 
 ## If QEMU with e1000e EFI ROM
 # RUN cd /usr/lib/ipxe/qemu/ && wget https://github.com/qemu/qemu/raw/master/pc-bios/efi-e1000e.rom
