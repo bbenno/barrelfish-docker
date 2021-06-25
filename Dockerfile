@@ -73,6 +73,7 @@ RUN git clone -q --single-branch git://git.barrelfish.org/git/barrelfish /home/b
 WORKDIR /home/builder/barrelfish
 RUN mkdir build
 
+## Set default Architecture to x86_64
 ARG ARCH=x86_64
 
 ## Build
