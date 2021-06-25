@@ -67,7 +67,7 @@ ENV LANG en_US.UTF-8
 ## Prepare build
 RUN cabal update \
  && cabal install bytestring-trie pretty-simple
-RUN git clone -q --single-branch git://git.barrelfish.org/git/barrelfish /home/builder/barrelfish
+RUN git clone -q git://git.barrelfish.org/git/barrelfish /home/builder/barrelfish
 WORKDIR /home/builder/barrelfish
 RUN mkdir build
 
