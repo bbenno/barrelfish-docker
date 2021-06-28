@@ -41,9 +41,9 @@ RUN apt install -y -q \
   libghc-missingh-dev
 
 ## FreeBSD's libelf \
-# RUN apt install -y -q \
-#  libelf-freebsd-dev \
-#  freebsd-glue \
+RUN apt install -y -q \
+	libelf-freebsd-dev \
+	freebsd-glue
 
 ## Optional: LibUSB 1.0 (for the usbboot tool) \
 #  libusb-1.0-0-dev \
@@ -84,9 +84,8 @@ RUN cabal install bytestring-trie pretty-simple async
 ARG ARCH=x86_64
 
 ## Build
-RUN cd build \
- && ../hake/hake.sh -s .. -a ${ARCH} -j $(nproc)
+WORKDIR /home/builder/barrelfish/build
+RUN ../hake/hake.sh -s .. -a ${ARCH} -j $(nproc)
 
 ## Build documentation
-RUN cd build \
- && make Documentation -j $(nproc)
+RUN make Documentation -j $(nproc)
