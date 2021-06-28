@@ -13,6 +13,14 @@ build: Dockerfile
 run: build
 	docker run -it barrelfish:$(ARCH)
 
+Zynq7000:
+	# Compile Barrelfish for Zynq7000 (ARMv7)
+	docker build --build-arg ARCH=armv7 --build-arg PLATFORM=$@ -t barrelfish:armv7-$@ .
+	# Copy compiled files to local storage
+	docker create barrelfish:armv7-$@ > $(CID_FILE)
+	docker cp `cat $(CID_FILE)`:/home/builder/barrelfish/build $@
+	docker rm `cat $(CID_FILE)`
+
 cp:
 	@echo "Clean up previous build"
 	rm -rf $(CP_DIR)/build
