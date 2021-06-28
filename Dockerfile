@@ -62,7 +62,8 @@ RUN apt install -y -q \
 	lhs2tex
 
 ## If QEMU with e1000e EFI ROM
-# RUN cd /usr/lib/ipxe/qemu/ && wget https://github.com/qemu/qemu/raw/master/pc-bios/efi-e1000e.rom
+# RUN cd /usr/lib/ipxe/qemu/ \
+#  && wget https://github.com/qemu/qemu/raw/master/pc-bios/efi-e1000e.rom
 
 ## Create the user 'builder'
 RUN adduser --disabled-password --gecos '' builder \
