@@ -89,3 +89,10 @@ RUN ../hake/hake.sh -s .. -a ${ARCH} -j $(nproc)
 
 ## Build documentation
 RUN make Documentation -j $(nproc)
+
+## Available platforms depends on chosen ${ARCH}itecture
+ARG PLATFORM
+
+## Compile Barrelfish for platform
+RUN test -n "$PLATFORM" \
+ && make ${PLATFORM} -j $(nproc)
