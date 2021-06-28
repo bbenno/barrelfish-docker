@@ -18,6 +18,7 @@ RUN apt upgrade -y -q
 ## GCC 7.4.0 for x86_64, ARMv7 and ARMv8 \
 RUN apt install -y -q \
   build-essential \
+  cpio \
   git \
   sudo \
   gcc-aarch64-linux-gnu \
