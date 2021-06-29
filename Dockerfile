@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 
 MAINTAINER Benno Bielmeier "benno.bielmeier@st.othr.de"
 
-## Build with "docker build --build-arg ARCH=<arch> -t barrelfish:git ."
+## Build with "docker build --build-arg ARCH=<arch> --build-arg PLATFORM=<ARCH-dependent platform> -t barrelfish:git ."
 ## where <arch> is one of barrelfish's supported architectures.
 ## Examples for <arch>:
 ## 	x86_64

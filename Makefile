@@ -1,5 +1,7 @@
 # Target architecture
 ARCH = armv8
+# Target platform
+PLATFORM = $(shell p=$(ARCH); echo $${p@U})
 # Destination to copy the built barrelfish kernel to
 CP_DIR = .
 # File temporarily holding the Docker container ID (CID)
@@ -8,7 +10,7 @@ CID_FILE := $(shell mktemp)
 default: run
 
 build: Dockerfile
-	docker build --build-arg ARCH=$(ARCH) -t barrelfish:$(ARCH) .
+	docker build --build-arg ARCH=$(ARCH) --build-arg PLATFORM=$(PLATFORM)_Basic -t barrelfish:$(ARCH) .
 
 run: build
 	docker run -it barrelfish:$(ARCH)
