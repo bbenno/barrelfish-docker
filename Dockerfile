@@ -55,11 +55,11 @@ RUN apt install -y -q \
 # 	qemu-ipxe
 
 ## Optional: PdfLatex (for documentation / technical notes)
-RUN apt install -y -q \
-	graphviz \
-	texlive-science \
-	texlive-latex-extra \
-	lhs2tex
+# RUN apt install -y -q \
+# 	graphviz \
+# 	texlive-science \
+# 	texlive-latex-extra \
+# 	lhs2tex
 
 ## If QEMU with e1000e EFI ROM
 # RUN cd /usr/lib/ipxe/qemu/ \
@@ -91,7 +91,7 @@ WORKDIR /home/builder/barrelfish/build
 RUN ../hake/hake.sh -s .. -a ${ARCH} -j $(nproc)
 
 ## Build documentation
-RUN make Documentation -j $(nproc)
+# RUN make Documentation -j $(nproc)
 
 ## Available platforms depends on chosen ${ARCH}itecture
 ARG PLATFORM
