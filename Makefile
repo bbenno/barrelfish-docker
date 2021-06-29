@@ -1,5 +1,5 @@
 # Target architecture
-ARCH = armv8
+ARCH = x86_64
 # Target platform
 PLATFORM = $(shell p=$(ARCH); echo $${p@U})
 # Destination to copy the built barrelfish kernel to
