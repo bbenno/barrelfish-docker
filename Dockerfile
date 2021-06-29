@@ -49,10 +49,10 @@ RUN apt install -y -q \
 # RUN apt install -y -q \
 # 	libusb-1.0-0-dev
 ## Optional: QEMU with e1000e EFI ROM
-# RUN apt install -y -q \
-# 	qemu-system-x86 \
-# 	qemu-efi \
-# 	qemu-ipxe
+RUN apt install -y -q \
+	qemu-system-x86 \
+	qemu-efi \
+	ipxe-qemu
 
 ## Optional: PdfLatex (for documentation / technical notes)
 # RUN apt install -y -q \
@@ -83,7 +83,7 @@ RUN mkdir build
 RUN cabal update
 RUN cabal install bytestring-trie pretty-simple async
 
-## Set default Architecture to x86_64
+## Set default Architecture
 ARG ARCH=x86_64
 
 ## Build
