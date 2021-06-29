@@ -41,9 +41,9 @@ RUN apt install -y -q \
 	libghc-missingh-dev
 
 ## FreeBSD's libelf
-RUN apt install -y -q \
-	libelf-freebsd-dev \
-	freebsd-glue
+# RUN apt install -y -q \
+# 	libelf-freebsd-dev \
+# 	freebsd-glue
 
 ## Optional: LibUSB 1.0 (for the usbboot tool)
 # RUN apt install -y -q \
