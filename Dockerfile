@@ -99,3 +99,7 @@ ARG PLATFORM
 ## Compile Barrelfish for platform
 RUN test -n "$PLATFORM" \
  && make ${PLATFORM} -j $(nproc)
+
+## Start QEMU without KVM support
+ENV KVM -no-kvm
+RUN make qemu_x86_64
