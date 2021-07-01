@@ -1,0 +1,3 @@
+[submodule "barrelfish"]
+	path = barrelfish
+	url = git://git.barrelfish.org/git/barrelfish
