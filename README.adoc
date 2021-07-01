@@ -1,0 +1,29 @@
+== Setup
+
+=== x86_64
+
+. Checkout git submodules
++
+[source]
+----
+git submodule update --init
+----
+. Build and run Docker container
++
+[source]
+----
+./run-x86.sh
+----
+. Within the Docker container: Build Barrelfish for x86
++
+[source]
+----
+cd barrelfish
+./build-x86.sh
+----
+. After leaving Docker container: Run QEMU
++
+[source]
+----
+./start-qemu-x86.sh
+----
