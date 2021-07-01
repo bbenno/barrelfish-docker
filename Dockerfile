@@ -74,28 +74,8 @@ RUN adduser --disabled-password --gecos '' builder \
 USER builder
 ENV HOME /home/builder
 ENV LANG en_US.UTF-8
-
-RUN git clone -q git://git.barrelfish.org/git/barrelfish /home/builder/barrelfish
-WORKDIR /home/builder/barrelfish
-RUN mkdir build
+WORKDIR /home/builder
 
 ## Prepare build
 RUN cabal update
 RUN cabal install bytestring-trie pretty-simple async
-
-## Set default Architecture to x86_64
-ARG ARCH=x86_64
-
-## Build
-WORKDIR /home/builder/barrelfish/build
-RUN ../hake/hake.sh -s .. -a ${ARCH} -j $(nproc)
-
-## Build documentation
-# RUN make Documentation -j $(nproc)
-
-## Available platforms depends on chosen ${ARCH}itecture
-ARG PLATFORM
-
-## Compile Barrelfish for platform
-RUN test -n "$PLATFORM" \
- && make ${PLATFORM} -j $(nproc)
